@@ -1,0 +1,20 @@
+# Build artifacts
+*.o
+*.d
+*.elf
+*.bin.bak
+*.hex.bak
+*.map
+build/
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Editors
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/

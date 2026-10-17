@@ -1,0 +1,79 @@
+# Betaflight 4.5.1 Custom CLI Configuration for STM32F411CEU6 (Blackpill)
+# Hardware: MPU-6050 (I2C PB6/PB7), BMP280, QMC5883L/HMC5883L, GPS (UART1), FlySky IBUS (UART2), Motors (PB4, PB5, PB8, PB9)
+
+# 1. Unmap conflicting resources first (to prevent "already in use" error)
+resource MOTOR 3 NONE
+resource MOTOR 4 NONE
+resource I2C_SCL 1 NONE
+resource I2C_SDA 1 NONE
+
+# 2. Map I2C1 to PB6 and PB7
+resource I2C_SCL 1 B06
+resource I2C_SDA 1 B07
+
+# 3. Map Motors: M1=PB4, M2=PB5, M3=PB8, M4=PB9
+resource MOTOR 1 B04
+resource MOTOR 2 B05
+resource MOTOR 3 B08
+resource MOTOR 4 B09
+
+# 4. Map Peripherals (Beeper, LED, Battery ADC, Serial Ports)
+resource BEEPER 1 B02
+resource LED 1 C13
+resource ADC_BATT 1 B00
+resource SERIAL_TX 1 A09
+resource SERIAL_RX 1 A10
+resource SERIAL_TX 2 A02
+resource SERIAL_RX 2 A03
+
+# 5. Enable Features
+feature RX_SERIAL
+feature TELEMETRY
+feature AIRMODE
+feature GPS
+
+# 6. Serial Ports Configuration
+# Port 20 = USB VCP (MSP)
+# Port 0  = UART1 (GPS)
+# Port 1  = UART2 (Serial RX: FlySky IBUS / SBUS)
+serial 20 1 115200 57600 0 115200
+serial 0 2 115200 57600 0 115200
+serial 1 64 115200 57600 0 115200
+
+# 7. Receiver Provider (FlySky IBUS on UART2 RX / PA3)
+set serialrx_provider = IBUS
+
+# 8. Gyro & Looptime (CRITICAL: 1kHz PID loop to fix 81% CPU Load & LOAD arming block)
+set gyro_1_bustype = I2C
+set gyro_1_i2cBus = 1
+set gyro_1_i2c_address = 0
+set gyro_1_sensor_align = CW0
+set pid_process_denom = 8
+
+# 9. Barometer & Magnetometer (I2C1)
+set baro_bustype = I2C
+set baro_i2c_device = 1
+set baro_hardware = AUTO
+set mag_bustype = I2C
+set mag_i2c_device = 1
+set mag_hardware = AUTO
+set align_mag = DEFAULT
+
+# 10. GPS Configuration
+set gps_provider = UBLOX
+set gps_sbas_mode = AUTO
+set gps_auto_baud = ON
+set gps_ublox_use_galileo = ON
+
+# 11. Motor / ESC Settings (Standard Analog PWM 400Hz for Yellow 30A / SimonK ESCs)
+set motor_pwm_protocol = PWM
+set motor_pwm_rate = 400
+set dshot_bitbang = OFF
+
+# 12. Beeper & Battery ADC
+set beeper_inversion = ON
+set beeper_od = OFF
+set battery_meter = ADC
+set vbat_scale = 110
+
+save
