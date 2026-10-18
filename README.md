@@ -34,11 +34,13 @@
 - [2. Hardware Bill of Materials (BOM)](#2-hardware-bill-of-materials-bom)
 - [3. System Architecture & High-Level Design](#3-system-architecture--high-level-design)
 - [4. Low-Level Resource Remapping & Pinout](#4-low-level-resource-remapping--pinout)
-- [5. Firmware Flashing & DFU Guide](#5-firmware-flashing--dfu-guide)
-- [6. Master CLI Configuration Script](#6-master-cli-configuration-script)
-- [7. Critical Bug Fixes & Diagnostics](#7-critical-bug-fixes--diagnostics)
-- [8. Repository Directory Structure](#8-repository-directory-structure)
-- [9. License & Credits](#9-license--credits)
+- [5. 📸 Configurator & Sensor Visual Verification (Screenshots)](#5--configurator--sensor-visual-verification-screenshots)
+- [6. Firmware Flashing & DFU Guide](#6-firmware-flashing--dfu-guide)
+- [7. Master CLI Configuration Script](#7-master-cli-configuration-script)
+- [8. Critical Bug Fixes & Diagnostics](#8-critical-bug-fixes--diagnostics)
+- [9. 📘 Complete Engineering Q&A Journey](docs/engineering-qa-troubleshooting.md)
+- [10. Repository Directory Structure](#10-repository-directory-structure)
+- [11. License & Credits](#11-license--credits)
 
 ---
 
@@ -159,7 +161,38 @@ flowchart LR
 
 ---
 
-## 5. Firmware Flashing & DFU Guide
+## 5. 📸 Configurator & Sensor Visual Verification (Screenshots)
+
+To provide clear verification and eliminate setup guesswork, here are actual screenshots captured from the bench testing sessions with Betaflight Configurator connected to the patched STM32F411 Black Pill:
+
+### 1. Setup Tab & Sensor Health Verification
+![Betaflight Setup and Sensor Health](docs/images/betaflight-setup-model-sensors.png)
+
+> **Key Observations in this Screenshot:**
+> - **Top Header Sensor Status:** `GYRO`, `ACCEL`, `MAG`, `BARO`, and `GPS` icons are all solid **green**, confirming full hardware detection across the shared I2C1 bus and UART1 serial port.
+> - **3D Model Reactivity:** The Quad-X model accurately reflects real-time physical roll/pitch/yaw orientation from the clone MPU-6050 (`WHO_AM_I: 0x98`).
+> - **Arming Prevention Flags:** Showing `CLI` and `MSP` as expected when connected via USB cable, confirming zero hardware lockout errors (`NO_GYRO` or `LOAD` flags are resolved).
+
+---
+
+### 2. Configuration Tab: Motor Protocol & Sensor Alignment
+![Betaflight Configuration Tab](docs/images/betaflight-configuration-tab.png)
+
+> **Key Observations in this Screenshot:**
+> - **ESC/Motor Protocol:** Configured as standard `PWM` (400 Hz) to safely drive the SimonK 30A ESCs without synchronization lockup.
+> - **System Configuration:** PID Loop Frequency is locked to `1.00 kHz`, ensuring smooth I2C transaction intervals and preventing the 81% CPU load bug.
+> - **Board and Sensor Alignment:** Magnetometer orientation is configured for the external GY-271 sensor mount.
+
+---
+
+### 3. Hardware Pinout Reference (STM32F411CEU6 Black Pill)
+![Black Pill Pinout](docs/images/stm32f411-blackpill-pinout.png)
+
+> Refer to [docs/wiring-guide.md](docs/wiring-guide.md) for the exact pin-to-pin wiring diagram and breadboard connections.
+
+---
+
+## 6. Firmware Flashing & DFU Guide
 
 ### Step 1: Put Black Pill into DFU Bootloader Mode
 1. Disconnect the USB cable.
@@ -179,7 +212,7 @@ flowchart LR
 
 ---
 
-## 6. Master CLI Configuration Script
+## 7. Master CLI Configuration Script
 
 After flashing, connect to the board via USB VCP and navigate to the **CLI** tab in Betaflight Configurator. Paste the following configuration from `cli-configs/betaflight_blackpill_f411_custom_cli.txt`:
 
@@ -257,7 +290,7 @@ save
 
 ---
 
-## 7. Critical Bug Fixes & Diagnostics
+## 8. Critical Bug Fixes & Diagnostics
 
 ### Issue 1: 81% CPU Load / `LOAD` Arming Block
 - **Cause:** By default, Betaflight attempts to run the PID loop at 8 kHz. However, an I2C-based gyro cannot provide updates faster than 1 kHz. The scheduler was constantly waiting on I2C transactions, spiking CPU load to 81% and triggering the `LOAD` safety lockout.
@@ -269,7 +302,14 @@ save
 
 ---
 
-## 8. Repository Directory Structure
+## 9. 📘 Complete Engineering Q&A Journey
+
+For a comprehensive chronological breakdown of every problem faced during the development of this flight controller, root-cause analyses, and solutions applied, see the dedicated engineering log:
+- **[Complete Engineering Q&A Troubleshooting Guide](docs/engineering-qa-troubleshooting.md)**
+
+---
+
+## 10. Repository Directory Structure
 
 ```text
 F450-Drone-STM32F411-Betaflight/
@@ -297,17 +337,23 @@ F450-Drone-STM32F411-Betaflight/
 │
 └── docs/
     ├── README.md                            # Technical documentation directory
+    ├── engineering-qa-troubleshooting.md    # Complete Q&A engineering journey & fixes
     ├── master-hardware-guide.md             # Complete hardware handover specifications
     ├── setup-guide-bn.md                    # Setup guide in Bengali (বাংলা গাইড)
     ├── wiring-guide.md                      # Detailed wiring tables and connections
-    ├── troubleshooting.md                   # Complete troubleshooting knowledge base
-    └── STM32F411CE-Black-Pill-Board-Pinout-Diagram.png # High-res pinout diagram
+    ├── troubleshooting.md                   # Troubleshooting knowledge base
+    └── images/                              # Visual documentation & screenshots
+        ├── README.md                        # Image directory catalog & annotations
+        ├── betaflight-setup-model-sensors.png # Setup tab with 3D model & sensor status
+        ├── betaflight-configuration-tab.png   # Configuration tab & sensor alignments
+        └── stm32f411-blackpill-pinout.png     # High-res pinout diagram
 ```
 
 ---
 
-## 9. License & Credits
+## 11. License & Credits
 
 - **Project Author:** [Arkadip Mahapatra](https://github.com/Arkadip2007)
 - **Base Flight Firmware:** [Betaflight Open Source Project](https://github.com/betaflight/betaflight)
 - **License:** Licensed under the [MIT License](LICENSE).
+
