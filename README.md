@@ -161,11 +161,13 @@ flowchart LR
 
 ---
 
-## 5. 📸 Configurator & Sensor Visual Verification (Screenshots)
+## 5. 📸 Configurator & Physical Hardware Visual Tour
 
-To provide clear verification and eliminate setup guesswork, here are actual screenshots captured from the bench testing sessions with Betaflight Configurator connected to the patched STM32F411 Black Pill:
+To provide complete end-to-end transparency, here are the actual screenshots captured from the bench testing sessions with Betaflight Configurator, along with physical photos of the custom flight controller assembly and drone hardware:
 
-### 1. Setup Tab & Sensor Health Verification
+### Part A: Configurator & Sensor Health Verification
+
+#### 1. Setup Tab & Sensor Health Verification
 ![Betaflight Setup and Sensor Health](docs/images/betaflight-setup-model-sensors.png)
 
 > **Key Observations in this Screenshot:**
@@ -175,7 +177,7 @@ To provide clear verification and eliminate setup guesswork, here are actual scr
 
 ---
 
-### 2. Configuration Tab: Motor Protocol & Sensor Alignment
+#### 2. Configuration Tab: Motor Protocol & Sensor Alignment
 ![Betaflight Configuration Tab](docs/images/betaflight-configuration-tab.png)
 
 > **Key Observations in this Screenshot:**
@@ -185,7 +187,54 @@ To provide clear verification and eliminate setup guesswork, here are actual scr
 
 ---
 
-### 3. Hardware Pinout Reference (STM32F411CEU6 Black Pill)
+### Part B: Physical Drone Build & Bench Hardware Gallery
+
+#### 3. Complete Bench Testing & Configurator Setup
+![Drone Bench Setup](docs/images/drone-bench-setup-laptop.jpg)
+
+> **Physical Bench Setup:** The complete F450 quadcopter connected to the laptop workstation via USB for live sensor calibration, motor direction verification, and radio receiver telemetry matching.
+
+---
+
+#### 4. Custom DIY STM32F411 Flight Controller Board (Top View)
+![STM32F411 FC Board](docs/images/stm32f411-flight-controller-board-top.jpg)
+
+> **Flight Controller Architecture:** Custom-soldered perfboard integrating the STM32F411CEU6 Black Pill (center), MPU-6050 6-DOF IMU, BMP280 barometer, GY-271 compass, and u-blox NEO-6M GPS module.
+
+---
+
+#### 5. Flight Controller Installed on Frame with Active Power
+![FC Installed on Frame](docs/images/stm32f411-fc-installed-wiring.jpg)
+
+> **Installed System:** The flight controller mounted onto the central fiberglass plate of the F450 airframe, powered via ESC 5V BEC with status LEDs illuminated, verifying active sensor bus communication.
+
+---
+
+#### 6. F450 Quadcopter Airframe Assembly
+![F450 Frame](docs/images/f450-frame-assembly.jpg)
+
+> **Airframe:** Standard 450mm diagonal wheelbase frame featuring high-strength polyamide arms and integrated power distribution board plates.
+
+---
+
+#### 7. All-Up-Weight (AUW) Measurement
+![Drone Weight on Scale](docs/images/f450-drone-weight-scale.jpg)
+
+> **Flight Weight Validation:** The complete F450 drone weighed on a precision digital scale with battery and 1045 propellers (~1.1 kg), validating the calculated ~2.5:1 thrust-to-weight ratio for stable hover.
+
+---
+
+#### 8. Radio Control System & Transmitter Power Mod
+| FlySky FS-i6 Transmitter | Internal Power Supply Mod |
+| :---: | :---: |
+| ![FlySky Transmitter](docs/images/flysky-fs-i6-transmitter.jpg) | ![Transmitter Mod](docs/images/flysky-transmitter-power-supply-mod.jpg) |
+| Mode 2 FlySky FS-i6 2.4GHz Transmitter | <u>*Updated power supply with rechargeable lithium-ion battery mod for extended field endurance.*</u> |
+
+---
+
+### Part C: Pinout Reference Diagram
+
+#### 9. Hardware Pinout Reference (STM32F411CEU6 Black Pill)
 ![Black Pill Pinout](docs/images/stm32f411-blackpill-pinout.png)
 
 > Refer to [docs/wiring-guide.md](docs/wiring-guide.md) for the exact pin-to-pin wiring diagram and breadboard connections.
@@ -342,11 +391,18 @@ F450-Drone-STM32F411-Betaflight/
     ├── setup-guide-bn.md                    # Setup guide in Bengali (বাংলা গাইড)
     ├── wiring-guide.md                      # Detailed wiring tables and connections
     ├── troubleshooting.md                   # Troubleshooting knowledge base
-    └── images/                              # Visual documentation & screenshots
+    └── images/                              # Visual documentation, photos & screenshots
         ├── README.md                        # Image directory catalog & annotations
         ├── betaflight-setup-model-sensors.png # Setup tab with 3D model & sensor status
         ├── betaflight-configuration-tab.png   # Configuration tab & sensor alignments
-        └── stm32f411-blackpill-pinout.png     # High-res pinout diagram
+        ├── drone-bench-setup-laptop.jpg     # Complete bench testing setup with laptop
+        ├── stm32f411-flight-controller-board-top.jpg # Custom FC perfboard close-up
+        ├── stm32f411-fc-installed-wiring.jpg # FC mounted on frame with active LEDs
+        ├── f450-frame-assembly.jpg          # Assembled F450 airframe
+        ├── f450-drone-weight-scale.jpg      # AUW scale measurement (~1.1 kg)
+        ├── flysky-fs-i6-transmitter.jpg     # FlySky FS-i6 radio transmitter
+        ├── flysky-transmitter-power-supply-mod.jpg # Lithium-ion battery mod for transmitter
+        └── stm32f411-blackpill-pinout.png   # High-res pinout diagram
 ```
 
 ---
