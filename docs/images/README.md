@@ -53,31 +53,58 @@ This directory hosts high-resolution screenshots, physical hardware build captur
   - GY-271 magnetometer compass module
   - u-blox NEO-6M GPS receiver module
 
-#### 5. [Flight Controller Installed with Active Power & Status LEDs](stm32f411-fc-installed-wiring.jpg)
+#### 5. [DIY Perfboard Flight Controller — Top Component Layout](diy-perfboard-fc-top-component-layout.jpg)
+- **File:** `diy-perfboard-fc-top-component-layout.jpg`
+- **Description:** Top side of the home-built flight controller board on copper perfboard showing component placement:
+  - Female header sockets for Black Pill MCU
+  - Sensor breakout header positions (MPU-6050, BMP280, GY-271, NEO-6M GPS)
+  - Filtering capacitors and power rail distribution
+  - Visual blueprint for home reproduction without requiring commercial PCB fabrication
+
+#### 6. [DIY Perfboard Flight Controller — Bottom Solder Traces & Wiring](diy-perfboard-fc-bottom-solder-wiring.jpg)
+- **File:** `diy-perfboard-fc-bottom-solder-wiring.jpg`
+- **Description:** Underside view of the hand-soldered perfboard showing point-to-point solder bridge connections:
+  - Ground bus network and power trace distribution
+  - Jumper wire routing between Black Pill GPIOs and sensor/ESC headers
+  - Critical reference for manual wiring replication and schematic/EDA software capture
+
+#### 7. [Flight Controller Installed with Active Power & Status LEDs](stm32f411-fc-installed-wiring.jpg)
 - **File:** `stm32f411-fc-installed-wiring.jpg`
 - **Description:** The flight controller board mounted on the central F450 plate, powered up via ESC 5V BEC with status LEDs illuminated, confirming clean power delivery and active firmware execution.
 
-#### 6. [F450 Quadcopter Airframe Assembly](f450-frame-assembly.jpg)
+#### 8. [F450 Quadcopter Airframe Assembly](f450-frame-assembly.jpg)
 - **File:** `f450-frame-assembly.jpg`
 - **Description:** Mechanical assembly of the 450mm wheelbase fiberglass central plates and reinforced polyamide arms prior to electronic component installation.
 
-#### 7. [All-Up-Weight (AUW) Measurement on Digital Scale](f450-drone-weight-scale.jpg)
+#### 9. [All-Up-Weight (AUW) Measurement on Digital Scale](f450-drone-weight-scale.jpg)
 - **File:** `f450-drone-weight-scale.jpg`
 - **Description:** Complete quadcopter on precision digital scale validating actual All-Up-Weight (AUW) with battery and propellers (~1.1 kg), confirming the calculated ~2.5:1 thrust-to-weight ratio.
 
-#### 8. [FlySky FS-i6 Radio Transmitter](flysky-fs-i6-transmitter.jpg)
+#### 10. [FlySky FS-i6 Radio Transmitter](flysky-fs-i6-transmitter.jpg)
 - **File:** `flysky-fs-i6-transmitter.jpg`
 - **Description:** FlySky FS-i6 2.4GHz AFHDS 2A radio transmitter configured for Mode 2 (Throttle on left) with 14-channel i-BUS serial output enabled.
 
-#### 9. [FlySky Transmitter Internal Power Supply Upgrade](flysky-transmitter-power-supply-mod.jpg)
+#### 11. [FlySky Transmitter Internal Power Supply Upgrade](flysky-transmitter-power-supply-mod.jpg)
 - **File:** `flysky-transmitter-power-supply-mod.jpg`
 - **Description:** Internal hardware modification replacing standard disposable AA batteries with a rechargeable **Lithium-Ion battery power supply**, providing extended operational battery life during extensive flight-tuning sessions.
+
+#### 12. [Author Active Development — Hardware Assembly & Hand-Soldering](author-hardware-assembly-hand-soldering.jpg)
+- **File:** `author-hardware-assembly-hand-soldering.jpg`
+- **Description:** Author **Arkadip Mahapatra** actively hand-soldering and testing circuit continuity with a digital multimeter on the workshop floor, validating 100% independent DIY construction from scratch.
+
+#### 13. [Author Active Development — Workstation Flashing & Bench Testing](author-workstation-bench-testing.jpg)
+- **File:** `author-workstation-bench-testing.jpg`
+- **Description:** Live firmware flashing, USB telemetry monitoring, and hardware-in-the-loop diagnostic testing at the author's computer workstation.
+
+#### 14. [Author Active Development — Circuit Board Inspection](author-circuit-inspection.jpg)
+- **File:** `author-circuit-inspection.jpg`
+- **Description:** Close optical inspection of hand-soldered pin headers, cold-joint checking, and board trace verification.
 
 ---
 
 ### C. Pinout & Reference Diagrams
 
-#### 10. [STM32F411CEU6 Black Pill Pinout Diagram](stm32f411-blackpill-pinout.png)
+#### 15. [STM32F411CEU6 Black Pill Pinout Diagram](stm32f411-blackpill-pinout.png)
 - **File:** `stm32f411-blackpill-pinout.png`
 - **Purpose:** Complete hardware reference diagram detailing GPIO pins, timer channels (TIM1, TIM2, TIM3, TIM4), alternate functions, ADC channels, and 5V tolerance.
 
