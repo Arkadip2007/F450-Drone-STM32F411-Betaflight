@@ -46,6 +46,16 @@
 
 ## 1. Executive Summary
 
+> [!IMPORTANT]
+> **🚧 Project Status: Under Active Development (Physical Motor Control via Software)**
+> On this STM32F411CEU6 Black Pill platform, all firmware builds, telemetry pipelines, and onboard I2C/UART sensors (MPU-6050 clone `0x98`, BMP280 barometer, GY-271 compass, NEO-6M GPS) are **100% operational and healthy**.
+> 
+> However, **physical PWM motor control via software is currently under active debugging** (investigating timer channel conflicts between TIM3/TIM4 and SimonK analog PWM ESC pulse timing).
+> 
+> 🚀 **Current Active Development Pivot:** Flight-testing priority has temporarily shifted to our sister repository:
+> 👉 **[F450-Drone-ESP32-FlightController](https://github.com/Arkadip2007/F450-Drone-ESP32-FlightController)**
+> where **all 4 physical motors are 100% controllable via software** on our handmade double-sided flight controller board! Once maiden flight tests are completed on ESP32, debugging will resume on this STM32 platform.
+
 The **STM32F411CEU6 "Black Pill"** is an ultra-affordable ARM Cortex-M4 microcontroller running at 100MHz with 512KB Flash and 128KB SRAM. While commercial flight controllers use specialized target layouts, this repository details the complete hardware pinout remapping and firmware engineering required to run **Betaflight** on a standard Black Pill breakout board.
 
 ### Core Breakthroughs:
